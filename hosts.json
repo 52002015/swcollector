@@ -1,0 +1,16 @@
+{
+	"hosts":
+	{
+		"10.0.8.11":"EQ MPLS Router CBC 1",
+		"10.0.8.12":"EQ MPLS Router CBC 2",
+		"10.0.9.1":"SG MPLS Router CBC",
+		"10.0.9.33":"MY MPLS Router CBC",
+		"10.0.9.65":"TW MPLS Router CBC",
+		"10.0.9.97":"TH MPLS Router CBC",
+		"10.0.9.129":"VN-HCM MPLS Router CBC",
+		"10.0.9.225":"PH MPLS Router CBC",
+		"10.0.10.1":"ID MPLS Router CBC",
+		"10.0.10.33":"CN-SH MPLS Router CBC",
+		"10.0.10.65":"CN-SZ MPLS Router CBC"
+	}
+}
