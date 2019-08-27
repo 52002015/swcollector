@@ -181,7 +181,7 @@ func swIfMetrics() (L []*model.MetricValue) {
 						L = append(L, GaugeValueIp(ifStat.TS, ip, "snmp.if.OperStatus", ifStat.IfOperStatus, ifNameTag, ifIndexTag))
 					}
 					if ignoreSpeedPercent == false {
-						L = append(L, GaugeValueIp(ifStat.TS, ip, "snmp.if.Speed", ifStat.IfSpeed, ifNameTag, ifIndexTag))
+						L = append(L, GaugeValueIp(ifStat.TS, ip, "snmp.if.SpeedMode", ifStat.IfSpeed, ifNameTag, ifIndexTag))
 					}
 					if ignoreBroadcastPkt == false {
 						if lastIfStatList := lastifmap.Get(chIfStat.Ip); lastIfStatList != nil {
