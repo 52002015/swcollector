@@ -4,5 +4,3 @@ cfg.json
 var/app.pid
 
 var/app.log
-
-falcon-swcollector
