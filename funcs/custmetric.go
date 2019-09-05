@@ -8,7 +8,7 @@ import (
 	"time"
 
 	go_snmp "github.com/gaochao1/gosnmp"
-	"github.com/gaochao1/sw"
+	"github.com/52002015/sw"
 	"github.com/gaochao1/swcollector/g"
 	"github.com/open-falcon/common/model"
 )
