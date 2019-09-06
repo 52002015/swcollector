@@ -3,7 +3,7 @@ module github.com/gaochao1/swcollector
 go 1.12
 
 require (
-	github.com/52002015/sw v0.0.0-20190905060752-cd5daa385ca2
+	github.com/52002015/sw v0.0.0-20190906031317-1b0b672a9f5d
 	github.com/alouca/gologger v0.0.0-20120904114645-7d4b7291de9c // indirect
 	github.com/freedomkk-qfeng/go-fastping v0.0.0-20160109021039-d7bb493dee3e // indirect
 	github.com/gaochao1/gosnmp v0.0.0-20150630013918-783a67a067fd
