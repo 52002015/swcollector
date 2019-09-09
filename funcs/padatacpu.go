@@ -40,7 +40,6 @@ func cpudataMetrics(ip string, ch chan SwDataCpu) {
 
 	cpuUtili, err := sw.CpuDataUtilization(ip, g.Config().Switch.Community, g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
 	if err != nil {
-		log.Println(err)
 		close(ch)
 		return
 	}
