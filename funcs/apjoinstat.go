@@ -29,7 +29,7 @@ func ApJoinMetrics() (L []*model.MetricValue) {
 		if !ok {
 			continue
 		}
-		L = append(L, GaugeValueIp(time.Now().Unix(), apJoin.Ip, "snmp.cpu.data.utilization", apJoin.CpuUtil))
+		L = append(L, GaugeValueIp(time.Now().Unix(), apJoin.Ip, "snmp.ap.joinStatus", apJoin.CpuUtil))
 	}
 
 	return L
