@@ -19,6 +19,7 @@ func BuildMappers() {
 			Fs: []func() []*model.MetricValue{
 				SwIfMetrics,
 				CpuMetrics,
+				CpuMgmtMetrics,
 				MemMetrics,
 				PingMetrics,
 				CustMetrics,
