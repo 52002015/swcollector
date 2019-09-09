@@ -23,6 +23,7 @@ func BuildMappers() {
 				CpuDataMetrics,
 				MemMetrics,
 				PingMetrics,
+				ApJoinMetrics,
 				CustMetrics,
 			},
 			Interval: interval,
