@@ -1,7 +1,6 @@
 package funcs
 
 import (
-	"log"
 	"time"
 
 	"github.com/52002015/sw"
