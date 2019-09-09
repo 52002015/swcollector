@@ -20,6 +20,7 @@ func BuildMappers() {
 				SwIfMetrics,
 				CpuMetrics,
 				CpuMgmtMetrics,
+				CpuDataMetrics,
 				MemMetrics,
 				PingMetrics,
 				CustMetrics,
