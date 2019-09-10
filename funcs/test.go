@@ -1,13 +1,9 @@
 package funcs
 
 import (
-	"errors"
 	"log"
-	"strconv"
-
 	"time"
 
-	go_snmp "github.com/gaochao1/gosnmp"
 	"github.com/52002015/sw"
 	"github.com/gaochao1/swcollector/g"
 	"github.com/open-falcon/common/model"
@@ -49,7 +45,7 @@ func sessMetrics(ip string, ch chan SessionM) {
 
 
 
-	vendor, err := SysVendor(ip, community, retry, timeout)
+	vendor, err := SysVendor(ip, community, g.Config().Switch.SnmpRetry, g.Config().Switch.SnmpTimeout)
 
 	method := "get"
 
@@ -72,14 +68,14 @@ func sessMetrics(ip string, ch chan SessionM) {
 
 func PaSession(ip string) (sessionmetric SessionMetric){
 	var sessionmetric SessionMetric
-	var sessionmetrics SessionMetric
- 	ActiveTcp, err := GetCustMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.4.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
+	var sessionmetrics []SessionMetric
+ 	ActiveTcp, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.4.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
  	if err == nil {
  		sessionmetric.metric = "snmp.session.panSessionActiveTcp"
  		sessionmetric.value = ActiveTcp
  		sessionmetrics = append(sessionmetrics, sessionmetric)
  	}
-	ActiveUdp, err := GetCustMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.5.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
+	ActiveUdp, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.5.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
 	if err == nil {
                 sessionmetric.metric = "snmp.session.panSessionActiveUdp"
                 sessionmetric.value = ActiveUdp
