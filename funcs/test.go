@@ -50,11 +50,8 @@ func sessMetrics(ip string, ch chan SessionM) {
 
 
 	vendor, err := SysVendor(ip, community, retry, timeout)
-	if err != nil {
-		return 0, err
-	}
+
 	method := "get"
-	var oid string
 
 	switch vendor {
 	case "PA_800", "PA":
@@ -69,7 +66,7 @@ func sessMetrics(ip string, ch chan SessionM) {
 
 	sessionm.Ip = ip
 	sessionm.sessionMetrics = sessionmetrics
-	ch <- custm
+	ch <- sessionm
 	return
 }
 
