@@ -138,7 +138,10 @@ func GetMetric(ip, community, oid string, timeout, retry int) (int, error) {
 	var snmpPDUs []go_snmp.SnmpPDU
 	for i := 0; i < retry; i++ {
 		snmpPDUs, err = sw.RunSnmp(ip, community, oid, method, timeout)
-		value = snmpPDUs[0].Value.(int)
+		if len(snmpPDUs) > 0 && err == nil {
+			value = snmpPDUs[0].Value.(int)
+			break
+		}
 		time.Sleep(100 * time.Millisecond)
 	}
 	return value, err
