@@ -105,19 +105,19 @@ func PaSession(ip string) (sessionmetrics []SessionMetric){
 
 func AsaSession(ip string) (sessionmetrics []SessionMetric){
 	var sessionmetric SessionMetric
- 	l2l, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.4.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
+ 	l2l, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.9.9.392.1.3.29", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
  	if err == nil {
  		sessionmetric.metric = "snmp.session.l2lNumSessions"
  		sessionmetric.value = l2l
  		sessionmetrics = append(sessionmetrics, sessionmetric)
  	}
-	ipsec, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.5.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
+	ipsec, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.9.9.392.1.3.26", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
 	if err == nil {
                 sessionmetric.metric = "snmp.session.IPSecNumSessions"
                 sessionmetric.value = ipsec
                 sessionmetrics = append(sessionmetrics, sessionmetric)
 	}
-	svc, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.25461.2.1.2.3.5.0", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
+	svc, err := GetMetric(ip, g.Config().Switch.Community, "1.3.6.1.4.1.9.9.392.1.3.35", g.Config().Switch.SnmpTimeout, g.Config().Switch.SnmpRetry)
 	if err == nil {
                 sessionmetric.metric = "snmp.session.SVCNumSessions"
                 sessionmetric.value = svc
