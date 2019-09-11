@@ -25,6 +25,7 @@ func BuildMappers() {
 				PingMetrics,
 				ApJoinMetrics,
 				ConInUseMetrics,
+				SesMetrics,
 				CustMetrics,
 			},
 			Interval: interval,
