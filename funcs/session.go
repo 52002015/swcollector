@@ -61,7 +61,6 @@ func sessMetrics(ip string, ch chan SessionM) {
 		sessionmetrics = AsaSession(ip)
 	
 	default:
-		log.Println(ip)
 		close(ch)
 		return
 	}
