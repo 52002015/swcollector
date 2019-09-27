@@ -51,6 +51,7 @@ func main() {
 	}
 
 	funcs.NewLastifMap()
+	funcs.NewLastwlcMap()
 	funcs.BuildMappers()
 
 	cron.Collect()

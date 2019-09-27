@@ -21,6 +21,11 @@ func (hc *HostsConfig) GetIPList() []string {
 	return l
 }
 
+func (hc *HostsConfig) GetHostname(ip string) string {
+        n := hc.Hosts[ip]
+        return n
+}
+
 var (
 	HostConfigFile string
 	hostconfig     *HostsConfig
