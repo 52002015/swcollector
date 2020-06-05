@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
-	"encoding/json"
 
 	"github.com/gaochao1/swcollector/cron"
 	"github.com/gaochao1/swcollector/funcs"
@@ -52,6 +52,8 @@ func main() {
 
 	funcs.NewLastifMap()
 	funcs.NewLastwlcMap()
+	funcs.NewLastdiskMap()
+	funcs.NewLastacMap()
 	funcs.BuildMappers()
 
 	cron.Collect()

@@ -111,7 +111,10 @@ func AllSwitchIp() (allIp []string) {
 		for _, sip := range switchIp {
 			aip := sw.ParseIp(sip)
 			for _, ip := range aip {
-				allIp = append(allIp, ip)
+				vender, _ := sw.SysVendor(ip, community, snmpRetry, snmpTimeout)
+				if vender != "AC" {
+					allIp = append(allIp, ip)
+				}
 			}
 		}
 	}
