@@ -228,14 +228,14 @@ func StringReg(result string) interface{} {
 			return 0
 		}
 		if strings.Contains(result, "K") {
-			return intResult * 1024
+			return intResult * 1000
 		}
 		if strings.Contains(result, "M") {
 			// intResult := fmt.Sprintf("%f", intResult*1000*8)
-			return intResult * 1024 * 1024
+			return intResult * 1000 * 1000
 		}
 		if strings.Contains(result, "G") {
-			return intResult * 1024 * 1024 * 1024
+			return intResult * 1000 * 1000 * 1000
 		}
 		return intResult
 	} else {
@@ -244,13 +244,13 @@ func StringReg(result string) interface{} {
 			return 0
 		}
 		if strings.Contains(result, "K") {
-			return intResult * 1024
+			return intResult * 1000
 		}
 		if strings.Contains(result, "M") {
-			return intResult * 1024 * 1024
+			return intResult * 1000 * 1000
 		}
 		if strings.Contains(result, "G") {
-			return intResult * 1024 * 1024 * 1024
+			return intResult * 1000 * 1000 * 1000
 		}
 		return intResult
 	}
