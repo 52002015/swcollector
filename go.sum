@@ -2,6 +2,10 @@ github.com/52002015/sw v0.0.0-20190926083612-a641f72eab5b h1:XeU0HnKZFHn2i9cg+Wz
 github.com/52002015/sw v0.0.0-20190926083612-a641f72eab5b/go.mod h1:vXjuxu69KBhHMzLFA0rILZSy//vePsjyNVUED0SwpIM=
 github.com/52002015/sw v0.0.0-20200605033509-8b696c41a6b8 h1:dNnLQAKxr2kZdt0nPO7YGdN0DdbkBrf5/ESHMLMAZx0=
 github.com/52002015/sw v0.0.0-20200605033509-8b696c41a6b8/go.mod h1:vXjuxu69KBhHMzLFA0rILZSy//vePsjyNVUED0SwpIM=
+github.com/52002015/sw v0.0.0-20200608154333-8abc03a63d31 h1:FZv7N3fPHbhF1lIjA0Ixk4D5QnX1GdgIKIGpmVAsbG8=
+github.com/52002015/sw v0.0.0-20200608154333-8abc03a63d31/go.mod h1:vXjuxu69KBhHMzLFA0rILZSy//vePsjyNVUED0SwpIM=
+github.com/52002015/sw v0.0.0-20200608161101-be9a666c3e24 h1:nwXjNXyH0u1YdVtwP6FeWivkFFD7gIBMGpewCCGYtB4=
+github.com/52002015/sw v0.0.0-20200608161101-be9a666c3e24/go.mod h1:vXjuxu69KBhHMzLFA0rILZSy//vePsjyNVUED0SwpIM=
 github.com/alouca/gologger v0.0.0-20120904114645-7d4b7291de9c h1:k/7/05/5kPRX7HaKyVYlsGVX6XkFTyYLqkqHzceUVlU=
 github.com/alouca/gologger v0.0.0-20120904114645-7d4b7291de9c/go.mod h1:SI1d/2/wpSTDjHgdS9ZLy6hqvsdhzVYAc8RLztweMpA=
 github.com/freedomkk-qfeng/go-fastping v0.0.0-20160109021039-d7bb493dee3e h1:g8x+P3+xjxt7c53bucQW0ymvj+whjKfCLZH+99UMLS0=
