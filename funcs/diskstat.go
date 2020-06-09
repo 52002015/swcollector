@@ -1,7 +1,6 @@
 package funcs
 
 import (
-	"fmt"
 	"log"
 	"regexp"
 	"strconv"
@@ -210,7 +209,6 @@ func coreDiskMetrcis(ip string, ch chan ChDiskStat, limitCh chan bool) {
 }
 
 func StringReg(result string) interface{} {
-	fmt.Println("result:", result)
 	reg := regexp.MustCompile(`\d+`)
 	if strings.Contains(result, ".") {
 		reg = regexp.MustCompile(`\d+\.\d+`)
@@ -219,12 +217,11 @@ func StringReg(result string) interface{} {
 		return "0"
 	}
 	newResult := reg.FindAllStringSubmatch(result, -1)[0][0]
-	fmt.Println("newResult:", newResult)
 
 	if strings.Contains(result, ".") {
 		intResult, err := strconv.ParseFloat(newResult, 2)
 		if err != nil {
-			fmt.Println("error: ", err)
+			log.Println("error: ", err)
 			return 0
 		}
 		if strings.Contains(result, "K") {
