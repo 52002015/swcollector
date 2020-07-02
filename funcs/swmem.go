@@ -28,8 +28,14 @@ func MemMetrics() (L []*model.MetricValue) {
 		swMem, ok := <-ch
 		if !ok {
 			continue
+		}		
+
+                vender, _ := sw.SysVendor(swMem.Ip, community, snmpRetry, snmpTimeout)
+		if vender == "AC" {
+			L = append(L, GaugeValueIp(time.Now().Unix(), swMem.Ip, "snmp.mem.free", swMem.MemUtili))
+		} else {
+		       L = append(L, GaugeValueIp(time.Now().Unix(), swMem.Ip, "snmp.mem.utilization", swMem.MemUtili))
 		}
-		L = append(L, GaugeValueIp(time.Now().Unix(), swMem.Ip, "snmp.mem.utilization", swMem.MemUtili))
 	}
 
 	return L
