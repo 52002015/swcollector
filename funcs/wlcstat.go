@@ -3,29 +3,31 @@ package funcs
 import (
 	"log"
 	"sync"
+
 	"github.com/gaochao1/swcollector/g"
 	"github.com/open-falcon/common/model"
 
+	"time"
+
 	"github.com/52002015/sw"
 	"github.com/toolkits/slice"
-	"time"
 )
 
 type ChWlcStat struct {
-	Ip          string
-	PingResult  bool
-	UseTime     int64
+	Ip           string
+	PingResult   bool
+	UseTime      int64
 	WlcStatsList *[]sw.WlcStats
 }
 
 type LastwlcMap struct {
-	lock   *sync.RWMutex
+	lock    *sync.RWMutex
 	wlcstat map[string]*[]sw.WlcStats
 }
 
 func NewLastwlcMap() {
 	lastwlcmap = &LastwlcMap{
-		lock:   new(sync.RWMutex),
+		lock:    new(sync.RWMutex),
 		wlcstat: make(map[string]*[]sw.WlcStats),
 	}
 }
@@ -79,9 +81,10 @@ func (m *LastwlcMap) Check(k string) bool {
 //	limitCon            int
 //)
 var (
-        WlcAliveIp             []string
-        lastwlcmap           *LastwlcMap
+	WlcAliveIp []string
+	lastwlcmap *LastwlcMap
 )
+
 // This init will be done in ifstat.go part
 //func initVariable() {
 //	pingTimeout = g.Config().Switch.PingTimeout
@@ -113,11 +116,11 @@ func AllWlcIp() (allIp []string) {
 			aip := sw.ParseIp(wip)
 			for _, ip := range aip {
 				//  this is a simple to way to filter wlc
-                                //ip_hostname := g.HostConfig().GetHostname(ip)
+				//ip_hostname := g.HostConfig().GetHostname(ip)
 				//if strings.Contains(strings.ToLower(ip_hostname),"wlc") {
 				//	allIp = append(allIp, ip)
 				//}
-					
+
 				//This is the more delegate way
 				vender, _ := sw.SysVendor(ip, community, snmpRetry, snmpTimeout)
 				if vender == "Cisco_WLC" {
@@ -143,10 +146,10 @@ func wlcMetrics() (L []*model.MetricValue) {
 			hostcfg := g.Config().SwitchHosts.Hosts
 			g.ParseHostConfig(hostcfg)
 		}
-//		if g.Config().CustomMetrics.Enabled {
-//			custMetrics := g.Config().CustomMetrics.Template
-//			g.ParseCustConfig(custMetrics)
-//		}
+		//		if g.Config().CustomMetrics.Enabled {
+		//			custMetrics := g.Config().CustomMetrics.Template
+		//			g.ParseCustConfig(custMetrics)
+		//		}
 		WlcAliveIp = nil
 	}
 	initVariable()
@@ -186,15 +189,16 @@ func wlcMetrics() (L []*model.MetricValue) {
 
 				for _, wlcStat := range *chWlcStat.WlcStatsList {
 					apNameTag := "apName=" + wlcStat.ApName
-				//	apIndexTag := "apIndex=" + wlcStat.ApIndex
+					//	apIndexTag := "apIndex=" + wlcStat.ApIndex
 					ip := chWlcStat.Ip
 
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.PowerStatus", wlcStat.ApPowerStatus, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.AssociatedClientCount", wlcStat.ApAssociatedClientCount, apNameTag))
-					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.MemoryCurrentUsage", wlcStat.ApMemoryCurrentUsage, apNameTag))	
+					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.MemoryCurrentUsage", wlcStat.ApMemoryCurrentUsage, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.CpuCurrentUsage", wlcStat.ApCpuCurrentUsage, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.ConnectCount", wlcStat.ApConnectCount, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.UpTime", wlcStat.ApUpTime, apNameTag))
+					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.HaPrimaryUnit", wlcStat.ApHaPrimaryUnit, apNameTag))
 					if lastWlcStatList := lastwlcmap.Get(chWlcStat.Ip); lastWlcStatList != nil {
 						for _, lastwlcStat := range *lastWlcStatList {
 							if wlcStat.ApIndex == lastwlcStat.ApIndex {
@@ -204,7 +208,7 @@ func wlcMetrics() (L []*model.MetricValue) {
 								ApEthernetIfOutputErrors := (float64(wlcStat.ApEthernetIfOutputErrors) - float64(lastwlcStat.ApEthernetIfOutputErrors)) / float64(interval)
 								ApReassocFailCount := (float64(wlcStat.ApReassocFailCount) - float64(lastwlcStat.ApReassocFailCount)) / float64(interval)
 								ApAssocFailTimes := (float64(wlcStat.ApAssocFailTimes) - float64(lastwlcStat.ApAssocFailTimes)) / float64(interval)
-								
+
 								if limitCheck(ApEthernetIfInputErrors, errorsPktlimit) {
 									L = append(L, GaugeValueIp(ts, ip, "snmp.ap.EthernetIfInputErrors", ApEthernetIfInputErrors, apNameTag))
 								} else {
@@ -281,7 +285,7 @@ func coreWlcMetrcis(ip string, ch chan ChWlcStat, limitCh chan bool) {
 		return
 	} else {
 		var wlcList []sw.WlcStats
-                var err error
+		var err error
 		if gosnmp {
 			wlcList, err = sw.ListWlcStats(ip, community, snmpTimeout, ignoreIface, snmpRetry, limitCon, ignorePkt, ignoreOperStatus, ignoreBroadcastPkt, ignoreMulticastPkt, ignoreDiscards, ignoreErrors, ignoreUnknownProtos, ignoreOutQLen)
 		}
