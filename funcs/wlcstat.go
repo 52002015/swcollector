@@ -191,6 +191,10 @@ func wlcMetrics() (L []*model.MetricValue) {
 					apNameTag := "apName=" + wlcStat.ApName
 					//	apIndexTag := "apIndex=" + wlcStat.ApIndex
 					ip := chWlcStat.Ip
+					if wlcStat.ApName == "server" {
+						apNameTag = ""
+						L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.HaPrimaryUnit", wlcStat.ApHaPrimaryUnit, apNameTag))
+					}
 
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.PowerStatus", wlcStat.ApPowerStatus, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.AssociatedClientCount", wlcStat.ApAssociatedClientCount, apNameTag))
@@ -198,7 +202,7 @@ func wlcMetrics() (L []*model.MetricValue) {
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.CpuCurrentUsage", wlcStat.ApCpuCurrentUsage, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.ConnectCount", wlcStat.ApConnectCount, apNameTag))
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.UpTime", wlcStat.ApUpTime, apNameTag))
-					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.HaPrimaryUnit", wlcStat.ApHaPrimaryUnit, apNameTag))
+
 					if lastWlcStatList := lastwlcmap.Get(chWlcStat.Ip); lastWlcStatList != nil {
 						for _, lastwlcStat := range *lastWlcStatList {
 							if wlcStat.ApIndex == lastwlcStat.ApIndex {
