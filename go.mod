@@ -3,7 +3,7 @@ module github.com/gaochao1/swcollector
 go 1.14
 
 require (
-	github.com/52002015/sw v0.0.0-20200921032531-aca92e783eaa
+	github.com/52002015/sw v0.0.0-20200922092823-5a07eccda6de
 	github.com/alouca/gologger v0.0.0-20120904114645-7d4b7291de9c // indirect
 	github.com/alouca/gosnmp v0.0.0-20170620005048-04d83944c9ab // indirect
 	github.com/freedomkk-qfeng/go-fastping v0.0.0-20160109021039-d7bb493dee3e // indirect
@@ -19,7 +19,7 @@ require (
 	github.com/toolkits/time v0.0.0-20160524122720-c274716e8d7f // indirect
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
 	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
-	golang.org/x/sys v0.0.0-20200917073148-efd3b9a0ff20 // indirect
+	golang.org/x/sys v0.0.0-20200922070232-aee5d888a860 // indirect
 	golang.org/x/text v0.3.3 // indirect
-	golang.org/x/tools v0.0.0-20200917221617-d56e4e40bc9d // indirect
+	golang.org/x/tools v0.0.0-20200921210052-fa0125251cc4 // indirect
 )

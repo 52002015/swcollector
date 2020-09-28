@@ -194,6 +194,7 @@ func wlcMetrics() (L []*model.MetricValue) {
 					if wlcStat.ApName == "server" {
 						apNameTag = ""
 						L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.HaPrimaryUnit", wlcStat.ApHaPrimaryUnit, apNameTag))
+						L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.RFStatusPeerUnitState", wlcStat.RFStatusPeerUnitState, apNameTag))
 					}
 
 					L = append(L, GaugeValueIp(wlcStat.TS, ip, "snmp.ap.PowerStatus", wlcStat.ApPowerStatus, apNameTag))
